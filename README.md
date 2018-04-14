@@ -9,6 +9,7 @@ Here are the cumulative probabilies of the conditions below when rolling 6 stand
 | 3 in a Row    | 0.9722222222222222  |
 | 4 in a Row    | 0.37808641975308643 |
 | 5 in a Row    | 0.10802469135802469 |
+| 6 in a Row    | 0.015432098765432098|
 | 1 Pair        | 0.9845679012345679  |
 | 2 Pairs       | 0.5561985596707819  |
 
