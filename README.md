@@ -7,7 +7,7 @@
 
 ## Results
 
-### 6-Dice Probabilities
+### Rolling 6 Dice Once
 
 | Condition     | Probability         |
 |:--------------|:--------------------|
