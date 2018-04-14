@@ -7,6 +7,7 @@ let straight6Outcomes = 0;
 let twoOfaKindOutcomes = 0;
 let twoPairs = 0;
 let fullHouse = 0;
+let onlyEvens = 0;
 
 function checkForStraights(diceArray) {
 
@@ -192,6 +193,16 @@ function checkForFullHouse(diceArray) {
     }
 }
 
+function checkForOnlyEvens(diceArray) {
+
+    if ((diceArray.indexOf(1) == -1) &&
+        (diceArray.indexOf(3) == -1) &&
+        (diceArray.indexOf(5) == -1)) {
+
+            onlyEvens++;
+    }
+}
+
 // roll all possible combinations of 6 d6
 
 for (a = 1; a <= diceSides; a++) {
@@ -209,6 +220,7 @@ for (a = 1; a <= diceSides; a++) {
             checkFor2ofAKind(diceArray);
             checkFor2Pairs(diceArray);
             checkForFullHouse(diceArray);
+            checkForOnlyEvens(diceArray);
 
             probailities.push(diceArray);
 
@@ -242,3 +254,11 @@ console.log(twoPairs/possibleOutcomes);
 console.log("Full House");
 console.log(fullHouse/possibleOutcomes);
 
+console.log("Only Evens");
+console.log(onlyEvens/possibleOutcomes);
+
+console.log("Only Odds");
+console.log(onlyEvens/possibleOutcomes);
+
+console.log("Only Evens OR Odds");
+console.log(onlyEvens*2/possibleOutcomes);
