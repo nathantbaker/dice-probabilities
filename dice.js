@@ -9,6 +9,22 @@ let twoPairs = 0;
 let fullHouse = 0;
 let onlyEvens = 0;
 
+// key for unique game dice
+// 1:   1 swirl
+// 2:   1 money
+// 3:   1 square
+// 4:   1 square
+// 5:   1 star
+// 6:   2 stars
+
+let threeStars = 0;
+let fourStars = 0;
+let fiveStars = 0;
+let sixStars = 0;
+let sevenStars = 0;
+let eightStars = 0;
+let nineStars = 0;
+
 function checkForStraights(diceArray) {
 
     if ((diceArray.indexOf(1) > -1) && (diceArray.indexOf(2) > -1) && (diceArray.indexOf(3) > -1)) {
@@ -203,6 +219,23 @@ function checkForOnlyEvens(diceArray) {
     }
 }
 
+function checkForStars(diceArray) {
+    var stars = 0;
+
+    for (let i = 0; i < diceArray.length; i++) {
+        if (diceArray[i] === 5) stars++;
+        if (diceArray[i] === 6) stars = stars + 2;
+    }
+
+    if (stars >= 3) threeStars ++;
+    if (stars >= 4) fourStars ++;
+    if (stars >= 5) fiveStars ++;
+    if (stars >= 6) sixStars ++;
+    if (stars >= 7) sevenStars ++;
+    if (stars >= 8) eightStars ++;
+    if (stars >= 9) nineStars ++;
+}
+
 // roll all possible combinations of 6 d6
 
 for (a = 1; a <= diceSides; a++) {
@@ -221,6 +254,7 @@ for (a = 1; a <= diceSides; a++) {
             checkFor2Pairs(diceArray);
             checkForFullHouse(diceArray);
             checkForOnlyEvens(diceArray);
+            checkForStars(diceArray);
 
             probailities.push(diceArray);
 
@@ -262,3 +296,31 @@ console.log(onlyEvens/possibleOutcomes);
 
 console.log("Only Evens OR Odds");
 console.log(onlyEvens*2/possibleOutcomes);
+
+console.log("3 or More Stars");
+console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
+console.log(threeStars/possibleOutcomes);
+
+console.log("4 or More Stars");
+console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
+console.log(fourStars/possibleOutcomes);
+
+console.log("5 or More Stars");
+console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
+console.log(fiveStars/possibleOutcomes);
+
+console.log("6 or More Stars");
+console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
+console.log(sixStars/possibleOutcomes);
+
+console.log("7 or More Stars");
+console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
+console.log(sevenStars/possibleOutcomes);
+
+console.log("8 or More Stars");
+console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
+console.log(eightStars/possibleOutcomes);
+
+console.log("9 or More Stars");
+console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
+console.log(nineStars/possibleOutcomes);
