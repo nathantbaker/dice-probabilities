@@ -8,6 +8,9 @@ let twoOfaKindOutcomes = 0;
 let twoPairs = 0;
 let fullHouse = 0;
 let onlyEvens = 0;
+let threeStars1Swirl = 0;
+let fourStars1Swirl = 0;
+let fiveStars1Swirl = 0;
 
 // key for unique game dice
 // 1:   1 swirl
@@ -24,6 +27,13 @@ let sixStars = 0;
 let sevenStars = 0;
 let eightStars = 0;
 let nineStars = 0;
+
+let oneOfEach = 0;
+let uniquePairs = 0;
+let twoSwirlsTwoSquares = 0;
+let twoStarTwoSquares = 0;
+let threeStarTwoSquares = 0;
+let oneTwoThree = 0;
 
 function checkForStraights(diceArray) {
 
@@ -236,6 +246,46 @@ function checkForStars(diceArray) {
     if (stars >= 9) nineStars ++;
 }
 
+function checkForMixedConditions(diceArray) {
+
+    // key for unique game dice
+    // 1:   1 swirl
+    // 2:   1 money
+    // 3:   1 square
+    // 4:   1 square
+    // 5:   1 star
+    // 6:   2 stars
+    var stars = 0;
+    var swirls = 0;
+    var squares = 0;
+
+    for (let i = 0; i < diceArray.length; i++) {
+        if (diceArray[i] === 1) swirls++;
+        if (diceArray[i] === 3) squares++;
+        if (diceArray[i] === 4) squares++;
+        if (diceArray[i] === 5) stars++;
+        if (diceArray[i] === 6) stars = stars + 2;
+    }
+
+    if ((stars >= 2 && swirls >= 2) ||
+        (stars >= 2 && squares >= 2) ||
+        (squares >= 2 && swirls >= 2)) {
+
+            uniquePairs++;
+    }
+
+    if (stars >= 3 && swirls >= 1) threeStars1Swirl++;
+    if (stars >= 4 && swirls >= 1) fourStars1Swirl++;
+    if (stars === 5 && swirls === 1) fiveStars1Swirl++;
+
+
+    if (squares >= 2 && swirls >= 2) twoSwirlsTwoSquares++;
+    if (squares >= 2 && stars >= 2) twoStarTwoSquares++;
+    if (squares >= 3 && stars >= 2) threeStarTwoSquares++;
+    if (swirls >= 1 && squares >= 2 && stars >= 3) oneTwoThree++;
+    if (swirls >= 1 && squares >= 1 && stars >= 1) oneOfEach++;
+}
+
 // roll all possible combinations of 6 d6
 
 for (a = 1; a <= diceSides; a++) {
@@ -255,6 +305,7 @@ for (a = 1; a <= diceSides; a++) {
             checkForFullHouse(diceArray);
             checkForOnlyEvens(diceArray);
             checkForStars(diceArray);
+            checkForMixedConditions(diceArray);
 
             probailities.push(diceArray);
 
@@ -324,3 +375,38 @@ console.log(eightStars/possibleOutcomes);
 console.log("9 or More Stars");
 console.log("(with 1/6 sides 1 star and 1/6 sides 2 stars on one face.)");
 console.log(nineStars/possibleOutcomes);
+
+console.log("One or more of Each (Swirl/Square/Star)");
+console.log(oneOfEach/possibleOutcomes);
+
+console.log("Pairs");
+console.log("at least 2 of Swirl/Square/Star");
+console.log(uniquePairs/possibleOutcomes);
+
+console.log("3 Stars and 1 Swirl");
+console.log(threeStars1Swirl/possibleOutcomes);
+
+console.log("4 Stars and 1 Swirl");
+console.log(fourStars1Swirl/possibleOutcomes);
+
+console.log("5 Stars and 1 Swirl");
+console.log(fiveStars1Swirl/possibleOutcomes);
+
+console.log("2 Swirls and 2 Squares");
+console.log(twoSwirlsTwoSquares/possibleOutcomes);
+
+console.log("2 Stars and 2 Squares");
+console.log(twoStarTwoSquares/possibleOutcomes);
+
+console.log("3 Stars and 2 Squares");
+console.log(threeStarTwoSquares/possibleOutcomes);
+
+console.log("1 spiral / 2 Square / 3 Star");
+console.log(oneTwoThree/possibleOutcomes);
+
+
+
+
+
+
+
